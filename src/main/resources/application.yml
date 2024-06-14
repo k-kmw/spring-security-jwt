@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: SpringJWT
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: pass
+    # Optional: You can use an in-memory database (jdbc:h2:mem:testdb) or file-based database (jdbc:h2:file:./data/testdb)
+  h2:
+    console:
+      enabled: true  # Enables the H2 console at /h2-console
+      path: /h2-console  # Path to access the H2 console (default is /h2-console)
+      settings:
+        web-allow-others: false  # Allows remote access to the console (not recommended for production)
+  jpa:
+    hibernate:
+      ddl-auto: none  # Automatically updates the database schema
+    show-sql: true  # Shows SQL statements in the console
+    database-platform: org.hibernate.dialect.H2Dialect
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
