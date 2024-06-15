@@ -18,6 +18,8 @@ spring:
       ddl-auto: none  # Automatically updates the database schema
     show-sql: true  # Shows SQL statements in the console
     database-platform: org.hibernate.dialect.H2Dialect
+  jwt:
+    secret: abcdefgasdsadasjdasjdasjdhjfhsajhdjsadhsa
 
 logging:
   level:
