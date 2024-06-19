@@ -15,7 +15,7 @@ spring:
         web-allow-others: false  # Allows remote access to the console (not recommended for production)
   jpa:
     hibernate:
-      ddl-auto: none  # Automatically updates the database schema
+      ddl-auto: create  # Automatically updates the database schema
     show-sql: true  # Shows SQL statements in the console
     database-platform: org.hibernate.dialect.H2Dialect
   jwt:
