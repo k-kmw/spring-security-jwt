@@ -37,6 +37,7 @@ public class ReissueController {
             return new ResponseEntity<>("refresh token null", HttpStatus.BAD_REQUEST);
         }
 
+        // expired check
         try {
             jwtUtil.isExpired(refresh);
         } catch (ExpiredJwtException e) {
@@ -44,9 +45,18 @@ public class ReissueController {
             return new ResponseEntity<>("refresh token expired", HttpStatus.BAD_REQUEST);
         }
 
+        // 토큰이 refresh인지 확인
+        String category = jwtUtil.getCategory(refresh);
+
+        if(!category.equals("refresh")) {
+
+            return new ResponseEntity<>("invalid refresh token", HttpStatus.BAD_REQUEST);
+        }
+
         String username = jwtUtil.getUsername(refresh);
         String role = jwtUtil.getRole(refresh);
 
+        // make new JWT
         String newAccess = jwtUtil.createJwt("access",username, role, 60*10*100L);
 
         response.setHeader("Authorization",newAccess);
